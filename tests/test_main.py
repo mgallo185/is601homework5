@@ -52,7 +52,7 @@ def test_main_success(capsys):
 
 def test_unexpected_error(capsys):
     """Test handling of unexpected errors"""
-    with patch('calculator.Calculator.add', side_effect=Exception("Unexpected test error")):
+    with patch('app.calculation.Calculator.add', side_effect=Exception("Unexpected test error")):
         calculate_and_print("5", "3", "add")
         captured = capsys.readouterr()
         assert captured.out.strip() == "An error occurred: Unexpected test error"

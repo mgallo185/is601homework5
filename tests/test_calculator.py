@@ -1,6 +1,6 @@
 '''My Calculator Test'''
 from faker import Faker
-from calculator import Calculator
+from app.calculation import Calculator
 
 
 # Create a Faker instance

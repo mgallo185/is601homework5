@@ -2,7 +2,7 @@
 
 from decimal import Decimal
 from faker import Faker
-from calculator.operations import add, subtract, multiply, divide
+from app.operations.operations import add, subtract, multiply, divide
 
 # Initialize Faker for generating random test data
 fake = Faker()

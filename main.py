@@ -1,6 +1,6 @@
 import sys
 from decimal import Decimal, InvalidOperation
-from calculator import Calculator
+from app.calculation import Calculator
 
 def calculate_and_print(num1, num2, operation_name):
     '''Calculate and print'''
