@@ -22,3 +22,7 @@ class CommandHandler:
             print(f"No such command: {command_name}")
         except TypeError:
             print(f"Invalid arguments for command: {command_name}")
+            
+    def get_registered_commands(self):
+        """Returns a list of registered command names."""
+        return list(self.commands.keys())
