@@ -1,4 +1,4 @@
-# Homework 4 by Michael Gallo
+# Homework 5 by Michael Gallo
 
 # scrapped original homework 3 due to how different my code was to professors example
 
@@ -12,3 +12,7 @@
 5. python main.py [number] [number] [operation]
 6. pytest --pylint --cov to run the tests
 7. pytest --num_records=10
+
+# useful testing commands:
+1. coverage report -m checks coverage of lines
+2. pytest --cov=app --cov-report=term-missing
