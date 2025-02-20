@@ -8,6 +8,7 @@ from app.plugins.multiply_command import MultiplyCommand
 from app.plugins.divide_command import DivideCommand
 
 
+
 @pytest.fixture
 def add_command():
     """Fixture to create AddCommand instance."""

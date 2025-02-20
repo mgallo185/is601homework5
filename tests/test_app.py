@@ -33,24 +33,24 @@ def test_app_start_unknown_command(capfd, monkeypatch):
     assert "No such command: unknown_command" in captured.out
 
 
-def test_plugin_load_failure(capsys, monkeypatch):
-    """Test handling of plugin loading failures."""
+def test_plugin_load_success_and_failure(capsys, monkeypatch):
+    """Test both successful and failed plugin loading."""
     def mock_import_module(name):
-        """Mock import_module to raise an exception for a specific plugin."""
+        """Mock import_module to handle both success and failure cases."""
         if 'broken_plugin' in name:
             raise ImportError("Mock import error")
-        return importlib.import_module(name)
-
-    # Mock pkgutil.iter_modules to return a broken plugin
+        return importlib.__import__('builtins')  # Return a real module for success case
+    
+    # Mock pkgutil.iter_modules to return both a working and broken plugin
     monkeypatch.setattr('pkgutil.iter_modules',
-                       lambda _: [('', 'broken_plugin', '')])
-    # Mock importlib.import_module to raise an exception
+                       lambda _: [('', 'working_plugin', ''), ('', 'broken_plugin', '')])
+    # Mock importlib.import_module
     monkeypatch.setattr('importlib.import_module', mock_import_module)
 
-    # Create app instance which will trigger plugin loading, using _ to indicate intentional non-use
+    # Create app instance which will trigger plugin loading
     _ = App()
 
-    # Check that the error was logged
+    # Check that both success and failure were logged
     captured = capsys.readouterr()
     assert "Failed to load plugin broken_plugin" in captured.out
 
