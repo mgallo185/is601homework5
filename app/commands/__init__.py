@@ -15,14 +15,13 @@ class CommandHandler:
         self.commands[command_name] = command
 
     def execute_command(self, command_name: str, *args):
-        """Executes a registered command if it exists."""
-        try:
-            self.commands[command_name].execute(*args)
-        except KeyError:
+        """Executes a registered command."""
+        if command_name in self.commands:
+            command = self.commands[command_name]
+            command.execute(*args)  # Execute the command synchronously
+        else:
             print(f"No such command: {command_name}")
-        except TypeError:
-            print(f"Invalid arguments for command: {command_name}")
-            
+
     def get_registered_commands(self):
         """Returns a list of registered command names."""
         return list(self.commands.keys())
