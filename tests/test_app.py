@@ -40,7 +40,7 @@ def test_plugin_load_success_and_failure(capsys, monkeypatch):
         if 'broken_plugin' in name:
             raise ImportError("Mock import error")
         return importlib.__import__('builtins')  # Return a real module for success case
-    
+
     # Mock pkgutil.iter_modules to return both a working and broken plugin
     monkeypatch.setattr('pkgutil.iter_modules',
                        lambda _: [('', 'working_plugin', ''), ('', 'broken_plugin', '')])
